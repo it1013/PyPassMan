@@ -59,8 +59,6 @@ def create_passman_entry(uid,entry_name,entry_username,entry_password,site_url=N
         return f"Error: {e}"
     return entry
 
-#todo
-#revise to shorter notation and test
 def get_passman_entry(uid, eid):
         #Get a single password entry belonging to the specified user.
     user = db.session.get(User, uid)
