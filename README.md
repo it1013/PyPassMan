@@ -2,7 +2,7 @@
 
 ---
 If you must, create mariadb:
-```
+```commandline
 CREATE DATABASE IF NOT EXISTS pypassman_db
     CHARACTER SET utf8mb4
     COLLATE utf8mb4_unicode_ci;
@@ -45,4 +45,13 @@ CREATE TABLE `passman_entries` (
   DEFAULT CHARSET=utf8mb4
   COLLATE=utf8mb4_unicode_ci;
  ```
-You also need to provide the db connection details in `pypassman.conf`. The cryptkey value needs to exist, but it really doesn't.
+You also need to provide the db connection details in `/config/pypassman.conf`. The cryptkey value needs to exist, but it really doesn't.
+
+```commandline
+[CENTRAL]
+dbhost = (IP)
+dbport = (PORT)
+dbuser = (clientdbuser))
+dbpass = (PASS IN BASE64)
+cryptkey = 
+```
