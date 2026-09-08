@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+{% block title %}Register - PyPassMan.app{% endblock %}
+{% block content %}
+<section class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6 col-lg-5">
+      <div class="card">
+        <div class="card-body">
+
+          <h1 class="h2">Create your account</h1>
+
+          <p class="text-muted small mb-4">
+            Choose a username, add your email, and set a strong password.
+          </p>
+          {% if errors %}
+          <div>
+            {% for e in errors %}
+              <div class="alert alert-danger alert-dismissible fade show" role="alert">{{e}}</div>
+            {% endfor %}
+          </div>
+          {% endif %}
+          <form method="post" action="/register" novalidate>
+
+            <div class="mb-3">
+              <label for="username" class="form-label">
+                Username
+              </label>
+
+              <input
+                id="username"
+                name="username"
+                type="text"
+                required
+                minlength="3"
+                maxlength="80"
+                class="form-control"
+                placeholder="thepythonmentor"
+              />
+            </div>
+
+            <div class="mb-3">
+              <label for="email" class="form-label">
+                Email
+              </label>
+
+              <input
+                id="email"
+                name="email"
+                type="email"
+                required
+                maxlength="120"
+                class="form-control"
+                placeholder="you@example.com"
+              />
+            </div>
+
+            <div class="mb-3">
+              <label for="password" class="form-label">
+                Password
+              </label>
+
+              <input
+                id="password"
+                name="password"
+                type="password"
+                required
+                minlength="6"
+                class="form-control"
+                placeholder="••••••••"
+              />
+            </div>
+
+            <div class="mb-3">
+              <label for="confirm_password" class="form-label">
+                Confirm password
+              </label>
+
+              <input
+                id="confirm_password"
+                name="confirm_password"
+                type="password"
+                required
+                minlength="6"
+                class="form-control"
+                placeholder="••••••••"
+              />
+            </div>
+
+            <div class="mb-3">
+              <label for="cryptkey" class="form-label">
+                Cryptkey Phrase
+              </label>
+
+              <input
+                id="cryptkey"
+                name="cryptkey"
+                type="text"
+                required
+                minlength="16"
+                class="form-control"
+                placeholder="Phrase used to encrypt passwords. Do not forget."
+              />
+            </div>
+
+            <button
+              type="submit"
+              class="btn btn-primary w-100 mt-2"
+            >
+              Create account
+            </button>
+
+          </form>
+
+          <p class="mt-4 mb-0 small text-muted">
+            Already have an account?
+            <a href="/logon">Sign in</a>.
+          </p>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% endblock %}

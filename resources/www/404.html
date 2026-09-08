@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}404{% endblock %}
+{% block content %}
+<div class="container text-center">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+
+            <h1 class="display-4 fw-bold mb-3">404</h1>
+
+            <p class="lead mb-4">
+                Page not found, but I did find this cake
+            </p>
+
+            <div class="d-flex justify-content-center mb-4">
+                <img
+                    src="/resources/assets/img/portfolio/cake.png"
+                    alt="Cake"
+                    class="img-fluid"
+                />
+            </div>
+
+            <a href="/" class="btn btn-primary">
+                <i class="fas fa-home me-2"></i>
+                Back to Home
+            </a>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

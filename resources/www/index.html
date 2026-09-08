@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}PyPassMan.app{% endblock %}
+{% block content %}
+<h1 class="text-center">Welcome</h1>
+<p class="text-center">
+  Login to continue.
+</p>
+
+<div class="d-flex justify-content-center gap-2 bg-primary text-white text-center align-items-center">
+  <div class="col text-center">
+    <a class="btn btn-outline-primary px-4 py-3" href="/logon">
+      <h2 class="fs-5">Login</h2>
+      <p class="fs-6 text-muted">To access your dashboard</p>
+    </a>
+    <a class="btn btn-outline-primary px-4 py-3" href="/register">
+      <h2 class="fs-5">Register</h2>
+      <p class="fs-6 text-muted">Create a new account</p>
+    </a>
+  </div>
+</div>
+{% endblock %}

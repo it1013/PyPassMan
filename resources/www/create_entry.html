@@ -1,0 +1,202 @@
+{% extends "base.html" %}
+{% block title %}Add Entry - PyPassMan.app{% endblock %}
+{% block content %}
+
+<section class="container">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+
+      <div class="card">
+        <div class="card-body text-black">
+
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              <h1 class="h2 mb-1">Add Password Entry</h1>
+
+              <p class="text-muted mb-0">
+                Add a new password entry to your ManPass.
+              </p>
+            </div>
+
+            <a
+              href="{{ url_for('dashboard') }}"
+              class="btn btn-outline-secondary"
+            >
+              Cancel
+            </a>
+          </div>
+
+          <hr>
+
+          {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+              {% for category, message in messages %}
+
+                <div
+                  class="alert
+                    {% if category == 'error' %}
+                      alert-danger
+                    {% elif category == 'success' %}
+                      alert-success
+                    {% else %}
+                      alert-info
+                    {% endif %}
+                  "
+                  role="alert"
+                >
+                  {{ message }}
+                </div>
+
+              {% endfor %}
+            {% endif %}
+          {% endwith %}
+
+
+          <form method="POST" action="{{ url_for('create_entry') }}">
+
+            <!-- Entry Name -->
+            <div class="mb-3">
+              <label for="entry_name" class="form-label">
+                Entry Name
+              </label>
+
+              <input
+                type="text"
+                class="form-control"
+                id="entry_name"
+                name="entry_name"
+                placeholder="Example: Gmail"
+                value="{{ request.form.get('entry_name', '') }}"
+                required
+                autofocus
+              >
+
+              <div class="form-text">
+                A name to identify this password entry.
+              </div>
+            </div>
+
+
+            <!-- Site URL -->
+            <div class="mb-3">
+              <label for="site_url" class="form-label">
+                Website URL
+              </label>
+
+              <input
+                type="url"
+                class="form-control"
+                id="site_url"
+                name="site_url"
+                placeholder="https://example.com"
+                value="{{ request.form.get('site_url', '') }}"
+              >
+
+              <div class="form-text">
+                The website associated with this account.
+              </div>
+            </div>
+
+
+            <!-- Username -->
+            <div class="mb-3">
+              <label for="entry_username" class="form-label">
+                Username
+              </label>
+
+              <input
+                type="text"
+                class="form-control"
+                id="entry_username"
+                name="entry_username"
+                placeholder="Username or email address"
+                value="{{ request.form.get('entry_username', '') }}"
+                autocomplete="username"
+                required
+              >
+            </div>
+
+
+            <!-- Password -->
+            <div class="mb-3">
+              <label for="entry_password" class="form-label">
+                Password
+              </label>
+
+              <div class="input-group">
+                <input
+                  type="password"
+                  class="form-control"
+                  id="entry_password"
+                  name="entry_password"
+                  placeholder="Password"
+                  autocomplete="new-password"
+                  required
+                >
+
+                <button
+                  class="btn btn-outline-secondary"
+                  type="button"
+                  id="togglePassword"
+                >
+                  Show
+                </button>
+              </div>
+
+              <div class="form-text">
+                Your password will be stored with this password entry.
+              </div>
+            </div>
+
+
+            <hr class="mt-4">
+
+
+            <!-- Buttons -->
+            <div class="d-flex justify-content-between">
+
+              <a
+                href="{{ url_for('dashboard') }}"
+                class="btn btn-secondary"
+              >
+                Cancel
+              </a>
+
+              <button
+                type="submit"
+                class="btn btn-primary"
+              >
+                Save Entry
+              </button>
+
+            </div>
+
+          </form>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- Show/Hide Password -->
+<script>
+  document
+    .getElementById("togglePassword")
+    .addEventListener("click", function () {
+
+      const password = document.getElementById("entry_password");
+
+      if (password.type === "password") {
+        password.type = "text";
+        this.textContent = "Hide";
+      } else {
+        password.type = "password";
+        this.textContent = "Show";
+      }
+
+    });
+</script>
+{% endblock %}
